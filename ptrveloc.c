@@ -63,11 +63,6 @@
  ****************************************************************************/
 
 /* fwds */
-static double
-SimpleSmoothProfile(DeviceIntPtr dev, DeviceVelocityPtr vel, double velocity,
-                    double threshold, double acc);
-static PointerAccelerationProfileFunc
-GetAccelerationProfile(DeviceVelocityPtr vel, int profile_num);
 static BOOL
 InitializePredictableAccelerationProperties(DeviceIntPtr,
                                             DeviceVelocityPtr,
@@ -823,7 +818,7 @@ ComputeAcceleration(DeviceIntPtr dev,
 /**
  * Polynomial function similar previous one, but with f(1) = 1
  */
-static double
+double
 PolynomialAccelerationProfile(DeviceIntPtr dev,
                               DeviceVelocityPtr vel,
                               double velocity, double ignored, double acc)
@@ -835,7 +830,7 @@ PolynomialAccelerationProfile(DeviceIntPtr dev,
  * returns acceleration for velocity.
  * This profile selects the two functions like the old scheme did
  */
-static double
+double
 ClassicProfile(DeviceIntPtr dev,
                DeviceVelocityPtr vel,
                double velocity, double threshold, double acc)
@@ -856,7 +851,7 @@ ClassicProfile(DeviceIntPtr dev,
  * This has the expense of overall response dependency on min-acceleration.
  * In effect, min_acceleration mimics const_acceleration in this profile.
  */
-static double
+double
 PowerProfile(DeviceIntPtr dev,
              DeviceVelocityPtr vel,
              double velocity, double threshold, double acc)
@@ -890,7 +885,7 @@ CalcPenumbralGradient(double x)
  * acceleration function similar to classic accelerated/unaccelerated,
  * but with smooth transition in between (and towards zero for adaptive dec.).
  */
-static double
+double
 SimpleSmoothProfile(DeviceIntPtr dev,
                     DeviceVelocityPtr vel,
                     double velocity, double threshold, double acc)
@@ -912,7 +907,7 @@ SimpleSmoothProfile(DeviceIntPtr dev,
  * This profile uses the first half of the penumbral gradient as a start
  * and then scales linearly.
  */
-static double
+double
 SmoothLinearProfile(DeviceIntPtr dev,
                     DeviceVelocityPtr vel,
                     double velocity, double threshold, double acc)
@@ -945,7 +940,7 @@ SmoothLinearProfile(DeviceIntPtr dev,
  * From 0 to threshold, the response graduates smoothly from min_accel to
  * acceleration. Beyond threshold it is exactly the specified acceleration.
  */
-static double
+double
 SmoothLimitedProfile(DeviceIntPtr dev,
                      DeviceVelocityPtr vel,
                      double velocity, double threshold, double acc)
@@ -962,7 +957,7 @@ SmoothLimitedProfile(DeviceIntPtr dev,
     return vel->min_acceleration + res;
 }
 
-static double
+double
 LinearProfile(DeviceIntPtr dev,
               DeviceVelocityPtr vel,
               double velocity, double threshold, double acc)
@@ -970,14 +965,14 @@ LinearProfile(DeviceIntPtr dev,
     return acc * velocity;
 }
 
-static double
+double
 NoProfile(DeviceIntPtr dev,
           DeviceVelocityPtr vel, double velocity, double threshold, double acc)
 {
     return 1.0;
 }
 
-static PointerAccelerationProfileFunc
+PointerAccelerationProfileFunc
 GetAccelerationProfile(DeviceVelocityPtr vel, int profile_num)
 {
     switch (profile_num) {

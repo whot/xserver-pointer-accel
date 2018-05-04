@@ -141,4 +141,31 @@ extern _X_INTERNAL void
 acceleratePointerLightweight(DeviceIntPtr dev, ValuatorMask *val,
                              CARD32 evtime);
 
+/*************************************************/
+/* Export the profiles so we can use them directly */
+
+#define PROFILE_ARGS \
+	DeviceIntPtr dev, DeviceVelocityPtr vel, double velocity, double threshold, double acc
+
+double
+PolynomialAccelerationProfile(PROFILE_ARGS);
+double
+ClassicProfile(PROFILE_ARGS);
+double
+PowerProfile(PROFILE_ARGS);
+double
+SimpleSmoothProfile(PROFILE_ARGS);
+double
+SmoothLinearProfile(PROFILE_ARGS);
+double
+SmoothLimitedProfile(PROFILE_ARGS);
+double
+LinearProfile(PROFILE_ARGS);
+double
+NoProfile(PROFILE_ARGS);
+
+PointerAccelerationProfileFunc
+GetAccelerationProfile(DeviceVelocityPtr vel, int profile_num);
+
+
 #endif                          /* POINTERVELOCITY_H */
