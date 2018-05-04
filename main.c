@@ -121,18 +121,23 @@ print_profile(DeviceIntPtr dev, int profile, int threshold, int accel)
     /* This will segfault for AccelProfileDeviceSpecific */
     func = GetAccelerationProfile(vel, profile);
 
-    printf("# data: velocity (mm/s) factor velocity(units/us) velocity(units/ms)\n");
+    printf("# data: velocity (mm/s) factor velocity(units/us) "
+           "velocity(units/ms) factor(corr_mul applied on velocity)\n");
 
     for (mmps = 0.0; mmps < 1000; mmps += 1) {
-        double factor;
+        double factor, factor_cor_mul;
 
         double units_per_ms = mmps_to_upms(mmps, DPI);
         double units_per_us = units_per_us/1000;
 
         /* vel is units per ms */
         factor = func(dev, vel, units_per_ms, threshold, accel);
-        printf("%.8f\t%.4f\t%.8f\t%.8f\n", mmps, factor, units_per_us, units_per_ms);
-
+        factor_cor_mul = func(dev, vel, units_per_ms * vel->corr_mul, threshold, accel);
+        printf("%.8f\t%.4f\t%.8f\t%.8f\t%.8f\n", mmps,
+               factor,
+               units_per_us,
+               units_per_ms,
+               factor_cor_mul);
     }
 }
 
