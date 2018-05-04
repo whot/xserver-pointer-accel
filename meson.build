@@ -24,3 +24,8 @@ lib = static_library('ptraccel',
                      dependencies : [dep_lm],
                      include_directories : [])
 dep_lib = declare_dependency(link_with: lib)
+
+prog = executable('ptrveloc',
+                  'main.c',
+                  dependencies: [dep_lib],
+                  install: false)
