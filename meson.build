@@ -9,6 +9,8 @@ cppflags = ['-Wno-unused-parameter', '-g', '-fvisibility=hidden']
 cflags = cppflags + ['-Wmissing-prototypes', '-Wstrict-prototypes']
 add_project_arguments(cflags, language : 'c')
 add_project_arguments(cppflags, language : 'cpp')
+defines = ['-DPTRACCEL_DEBUGGING']
+add_project_arguments(defines, language : 'c')
 
 dep_lm = cc.find_library('m')
 

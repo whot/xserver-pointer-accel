@@ -44,6 +44,7 @@
 
 #define XIChangeDeviceProperty(...) /* */
 #define LogMessageVerbSigSafe(type, level, ...) printf(__VA_ARGS__)
+#define ErrorFSigSafe(...) ErrorF(__VA_ARGS__)
 #define ErrorF(...) printf(__VA_ARGS__)
 #define BUG_RETURN_VAL(...) /* */
 #define BUG_WARN_MSG(...)
