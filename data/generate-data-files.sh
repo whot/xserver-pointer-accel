@@ -1,9 +1,10 @@
 #!/bin/sh
 
 tool=$HOME/code/xserver-pointer-accel/build/ptrveloc
+libinput_tool=$HOME/code/libinput/build/ptraccel-debug
 
 profiles="simple classic smooth linear polynomial power limited"
-thresholds="0 2 4 6 8"
+thresholds="0 0.5 2 4 6 8"
 accel="0 0.5 2 4 6 8"
 
 for p in $profiles; do
@@ -14,3 +15,6 @@ for p in $profiles; do
     done
 done
 
+
+$libinput_tool --mode=accel --filter=linear --speed=0.0 > libinput-mouse.dat
+$libinput_tool --mode=accel --filter=touchpad --speed=0.0 > libinput-touchpad.dat
