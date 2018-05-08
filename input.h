@@ -230,3 +230,6 @@ accelPointer(DeviceIntPtr dev, ValuatorMask *valuators, CARD32 ms) {
 	if (dev->valuator->accelScheme.AccelSchemeProc)
 		dev->valuator->accelScheme.AccelSchemeProc(dev, valuators, ms);
 }
+
+void
+SetConstantDeceleration(double v);

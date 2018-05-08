@@ -7,6 +7,26 @@
 #define DEFAULT_PTR_DENOMINATOR 1
 #define DEFAULT_PTR_THRESHOLD   4
 
+/**
+ * These options just set the property, and then expect the property
+ * handler to deal with the changes (if any?) from the defaults already
+ * initialized.
+ *
+ * This code cuts that short and replicates the actual changes.
+ */
+static double ConstantDeceleration = 1.0; /* see ProcessVelocityConfiguration() */
+static double AdaptiveDeceleration = 1.0; /* see ProcessVelocityConfiguration() */
+/* AccelerationProfile, default to s->statistics.profile_number which
+ * is AccelProfileClassic in InitVelocityData */
+static int AccelerationProfile = AccelProfileClassic;
+static int ExpectedRate = 0; /* see ProcessVelocityConfiguration() */
+static int VelocityScale = 10; /* see InitVelocityData() */
+
+void
+SetConstantDeceleration(double v) {
+    ConstantDeceleration = v;
+}
+
 PtrCtrl defaultPointerControl = {
     DEFAULT_PTR_NUMERATOR,
     DEFAULT_PTR_DENOMINATOR,
@@ -33,8 +53,8 @@ init_device(void) {
     return dev;
 }
 
-/* This is basically what ApplyAccelerationSettings does, without the
- * xorg.conf parsing */
+/* This is basically what ApplyAccelerationSettings and
+ * ProcessVelocityConfiguration() do, without the xorg.conf parsing */
 static void
 apply_acceleration_settings(DeviceIntPtr dev)
 {
@@ -47,31 +67,18 @@ apply_acceleration_settings(DeviceIntPtr dev)
     /* content from ProcessVelocityConfiguration */
     s = GetDevicePredictableAccelData(dev);
 
-    /**
-     * These options just set the property, and then expect the property
-     * handler to deal with the changes (if any?) from the defaults already
-     * initialized.
-     *
-     * This code cuts that short and replicates the actual changes.
-     */
-
-    /* ConstantDeceleration */
-    v = 1.0; /* default from ApplyAccelerationSettings */
+    v = ConstantDeceleration;
     if (v != 1.0)
         s->const_acceleration = 1/v;
 
-    /* AdaptiveDeceleration */
-    v = 1.0; /* default from ApplyAccelerationSettings */
+    v = AdaptiveDeceleration;
     if (v >= 1.0f)
         s->min_acceleration = 1 / v;
 
-     /* AccelerationProfile, default to s->statistics.profile_number which
-      * is AccelProfileClassic in InitVelocityData */
-    int profile = AccelProfileClassic;
-    SetAccelerationProfile(s, profile);
+    SetAccelerationProfile(s, AccelerationProfile);
 
     /* ExpectedRate, VelocityScale map to the same thing */
-    v = 0.0; /* ExpectedRate default from ApplyAccelerationSettings */
+    v = ExpectedRate;
     if (v > 0) {
         v = 1000.0/v;
     } else {
