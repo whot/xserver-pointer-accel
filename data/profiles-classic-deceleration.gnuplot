@@ -19,6 +19,4 @@ plot \
   filename(profile, 4, 2) using 1:2 title 't4/a2', \
   filename(profile, 2, 4) using 1:2 title 't2/a4', \
   filename(profile, 4, 4) using 1:2 title 't4/a4', \
-  for [d in decels] filename(profile, threshold, accel) using 1:(decel($2, d)) title d
-
-pause -1
+  for [d in decels] filename(profile, threshold, accel) using 1:(decel($5, d)) title d

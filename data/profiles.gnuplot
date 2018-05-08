@@ -14,6 +14,5 @@ set style data lines
 set xrange [0:100]
 set yrange [0:10]
 plot \
-  for [p in profiles] filename(p, threshold, accel) using 1:2 title p \
+  for [p in profiles] filename(p, threshold, accel) using 1:5 title p \
 
-pause -1
