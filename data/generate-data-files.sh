@@ -27,5 +27,10 @@ for acc in $accrange; do
     done
 done
 
+# for diag comparison
+$tool synaptics 0.2 0.7 0.04 > synaptics-ps2.dat
+$tool synaptics 0.2 0.7 0.09 > synaptics-rmi4.dat
+$tool synaptics 0.2 0.7 0.12 > synaptics-alps.dat
+
 $libinput_tool --mode=accel --filter=linear --speed=0.0 > libinput-mouse.dat
 $libinput_tool --mode=accel --filter=touchpad --speed=0.0 > libinput-touchpad.dat
