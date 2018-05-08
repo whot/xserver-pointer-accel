@@ -109,7 +109,7 @@ mmps_to_upms(double mmps, int dpi)
 }
 
 static inline void
-print_profile(DeviceIntPtr dev, int profile, int threshold, int accel)
+print_profile(DeviceIntPtr dev, int profile, double threshold, double accel)
 {
     PointerAccelerationProfileFunc func;
     DeviceVelocityPtr vel = GetDevicePredictableAccelData(dev);
