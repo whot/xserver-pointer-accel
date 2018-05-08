@@ -185,11 +185,17 @@ int main(int argc, char **argv)
     if (streq(p, "simple"))
         profile = AccelProfileSimple;
     else if (streq(p, "classic"))
-        profile = AccelProfileSimple;
+        profile = AccelProfileClassic;
     else if (streq(p, "smooth"))
         profile = AccelProfileSmoothLinear;
     else if (streq(p, "linear"))
         profile = AccelProfileLinear;
+    else if (streq(p, "polynomial"))
+        profile = AccelProfilePolynomial;
+    else if (streq(p, "power"))
+        profile = AccelProfilePower;
+    else if (streq(p, "limited"))
+        profile = AccelProfileSmoothLimited;
     else {
         printf("Unsupported profile name\n");
         return 1;

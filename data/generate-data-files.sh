@@ -2,7 +2,7 @@
 
 tool=$HOME/code/xserver-pointer-accel/build/ptrveloc
 
-profiles="simple classic smooth linear"
+profiles="simple classic smooth linear polynomial power limited"
 thresholds="0 2 4 6 8"
 accel="0 0.5 2 4 6 8"
 

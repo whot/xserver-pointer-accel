@@ -4,7 +4,7 @@
 threshold=4
 accel=2
 
-profiles='classic simple smooth linear'
+profiles='smooth linear polynomial power limited simple classic'
 
 filename(p, t, a) = sprintf('xserver-%s-t%d-a%d.dat', p, t, a)
 
