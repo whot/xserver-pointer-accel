@@ -12,7 +12,7 @@ set xlabel 'mm/s'
 set ylabel 'factor'
 set style data lines
 set xrange [0:100]
-set yrange [0:10]
+set yrange [0:5]
 plot \
   'synaptics-ps2.dat' using 1:7 title 'ps/2', \
   'synaptics-rmi4.dat' using 1:7 title 'rmi4', \

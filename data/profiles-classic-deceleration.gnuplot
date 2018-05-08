@@ -13,7 +13,7 @@ set xlabel 'mm/s'
 set ylabel 'factor'
 set style data lines
 set xrange [0:100]
-set yrange [0:10]
+set yrange [0:5]
 
 decel(x, c)=x * c
 

@@ -16,7 +16,7 @@ set xlabel 'mm/s'
 set ylabel 'factor'
 set style data lines
 set xrange [0:100]
-set yrange [0:10]
+set yrange [0:5]
 plot \
    filename_syn(mins, maxs, acc) using 1:5 title 'synaptics (profile)', \
    filename_syn(mins, maxs, acc) using 1:7 title 'synaptics (real)', \

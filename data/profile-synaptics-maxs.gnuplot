@@ -14,7 +14,7 @@ set xlabel 'mm/s'
 set ylabel 'factor'
 set style data lines
 set xrange [0:100]
-set yrange [0:10]
+set yrange [0:5]
 plot \
   for [maxs in vals] filename(mins, maxs, acc) using 1:7 title maxs \
 
