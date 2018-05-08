@@ -121,7 +121,12 @@ print_profile(DeviceIntPtr dev, int profile, double threshold, double accel)
     PointerAccelerationProfileFunc func;
     DeviceVelocityPtr vel = GetDevicePredictableAccelData(dev);
     double mmps;
-    const double DPI = 1000;
+    double DPI = 1000;
+    const char *env;
+
+    if ((env = getenv("DPI")) != NULL) {
+        DPI = atoi(env);
+    }
 
     /* xserver code uses velocity in units/ms */
 
@@ -131,6 +136,7 @@ print_profile(DeviceIntPtr dev, int profile, double threshold, double accel)
     printf("# data: velocity (mm/s) factor velocity(units/us) "
            "velocity(units/ms) factor(corr_mul applied on velocity)"
            "factor(const-decel applied) factor(corr_mul and const-decel applied)\n");
+    printf("# DPI for unit to mm conversion: %.2f\n", DPI);
 
     for (mmps = 0.0; mmps < 1000; mmps += 1) {
         double factor, factor_cor_mul;
