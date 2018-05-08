@@ -167,5 +167,7 @@ NoProfile(PROFILE_ARGS);
 PointerAccelerationProfileFunc
 GetAccelerationProfile(DeviceVelocityPtr vel, int profile_num);
 
+double
+SynapticsAccelerationProfile(PROFILE_ARGS);
 
 #endif                          /* POINTERVELOCITY_H */

@@ -16,5 +16,13 @@ for p in $profiles; do
 done
 
 
+p=synaptics
+range="0.2 0.3 0.4 0.5 0.6 0.7 0.8"
+for min in $range; do
+    for max in $range; do
+        $tool $p $min $max > synaptics-min$min-max$max.dat
+    done
+done
+
 $libinput_tool --mode=accel --filter=linear --speed=0.0 > libinput-mouse.dat
 $libinput_tool --mode=accel --filter=touchpad --speed=0.0 > libinput-touchpad.dat

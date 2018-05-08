@@ -16,6 +16,7 @@ dep_lm = cc.find_library('m')
 
 sources = [ 'ptrveloc.c',
             'ptrveloc.h',
+            'synaptics.c',
             'input.h',
             'valuator-mask.h',
             'valuator-mask.c' ]

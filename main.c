@@ -185,6 +185,8 @@ int main(int argc, char **argv)
     if (argc != 4) {
         printf("Usage: %s <profile-name> <threshold> <accel>\n", argv[0]);
         printf("Defaults: classic 4 2\n");
+        printf("If the profile is 'synaptics', the threshold is min-speed (deflt 0.2), "
+               "the accel is max-speed (deflt 0.4)\n");
         return 1;
     }
     assert(argc == 4);
@@ -203,6 +205,8 @@ int main(int argc, char **argv)
         profile = AccelProfilePower;
     else if (streq(p, "limited"))
         profile = AccelProfileSmoothLimited;
+    else if (streq(p, "synaptics"))
+        profile = AccelProfileDeviceSpecific;
     else {
         printf("Unsupported profile name\n");
         return 1;
@@ -214,6 +218,12 @@ int main(int argc, char **argv)
     DeviceIntPtr dev = init_device();
 
     InitPredictableAccelerationScheme(dev, &pointerAccelerationScheme[1]);
+    if (profile == AccelProfileDeviceSpecific) {
+        double min_speed = threshold,
+               max_speed = accel;
+        SynapticsInit(dev, min_speed, max_speed);
+    }
+
     apply_acceleration_settings(dev);
 
     /* This is the default when no configuration is applied */

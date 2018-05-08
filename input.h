@@ -154,12 +154,17 @@ typedef struct _PtrFeedbackClassRec {
 } PtrFeedbackClassRec;
 typedef struct _PtrFeedbackClassRec *PtrFeedbackPtr;
 
+typedef struct _InputInfoRec {
+    void *private;
+} InputInfoRec, *InputInfoPtr;
 
 struct _DeviceIntRec {
+    struct {
+        InputInfoPtr devicePrivate;
+    } public;
     ValuatorClassPtr valuator;
     PtrFeedbackPtr ptrfeed;
 };
-
 
 static inline int
 XIPropToFloat(XIPropertyValuePtr val, int *nelem_return, float **buf_return)
@@ -233,3 +238,6 @@ accelPointer(DeviceIntPtr dev, ValuatorMask *valuators, CARD32 ms) {
 
 void
 SetConstantDeceleration(double v);
+
+void
+SynapticsInit(DeviceIntPtr dev, double min_speed, double max_speed);
