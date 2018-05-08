@@ -129,7 +129,8 @@ print_profile(DeviceIntPtr dev, int profile, double threshold, double accel)
     func = GetAccelerationProfile(vel, profile);
 
     printf("# data: velocity (mm/s) factor velocity(units/us) "
-           "velocity(units/ms) factor(corr_mul applied on velocity)\n");
+           "velocity(units/ms) factor(corr_mul applied on velocity)"
+           "factor(const-decel applied) factor(corr_mul and const-decel applied)\n");
 
     for (mmps = 0.0; mmps < 1000; mmps += 1) {
         double factor, factor_cor_mul;
@@ -140,11 +141,15 @@ print_profile(DeviceIntPtr dev, int profile, double threshold, double accel)
         /* vel is units per ms */
         factor = func(dev, vel, units_per_ms, threshold, accel);
         factor_cor_mul = func(dev, vel, units_per_ms * vel->corr_mul, threshold, accel);
-        printf("%.8f\t%.4f\t%.8f\t%.8f\t%.8f\n", mmps,
+        double f_decel = factor * vel->const_acceleration;
+        double fcm_decel = factor_cor_mul * vel->const_acceleration;
+        printf("%.8f\t%.4f\t%.8f\t%.8f\t%.8f\t%.8f\t%.8f\n", mmps,
                factor,
                units_per_us,
                units_per_ms,
-               factor_cor_mul);
+               factor_cor_mul,
+               f_decel,
+               fcm_decel);
     }
 }
 
