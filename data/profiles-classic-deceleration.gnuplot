@@ -10,7 +10,7 @@ filename(p, t, a) = sprintf('xserver-%s-t%d-a%d.dat', p, t, a)
 set xlabel 'mm/s'
 set ylabel 'factor'
 set style data lines
-# set xrange [0:1000]
+set xrange [0:100]
 set yrange [0:10]
 
 decel(x, c)=x * c

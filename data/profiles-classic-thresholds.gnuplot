@@ -10,7 +10,7 @@ filename(p, t, a) = sprintf('xserver-%s-t%s-a%d.dat', p, t, a)
 set xlabel 'mm/s'
 set ylabel 'factor'
 set style data lines
-# set xrange [0:1000]
+set xrange [0:100]
 set yrange [0:10]
 plot \
   for [t in thresholds] filename(profile, t, accel) using 1:2 title t
