@@ -32,9 +32,28 @@ for acc in $accrange; do
 done
 
 # for diag comparison
+# >>> diag = math.hypot(5112 - 1024, 4832 - 2024)
+# >>> dpi = 42 * 25.4
+export SYNAPTICS_DIAGONAL="4959"
+export DPI="1067"
 $tool synaptics 0.2 0.7 0.04 > synaptics-ps2.dat
+
+# >>> diag = math.hypot(1940 , 1063)
+# >>> dpi = 20 * 25.4
+export SYNAPTICS_DIAGONAL="2212"
+export DPI="508"
 $tool synaptics 0.2 0.7 0.09 > synaptics-rmi4.dat
+
+# >>> diag = math.hypot(2000, 1400)
+# >>> dpi = 25 * 25.4
+# Note that this device has x res 25 and y res 32 but we can't handle this
+# here
+export SYNAPTICS_DIAGONAL="2441"
+export DPI="635"
 $tool synaptics 0.2 0.7 0.12 > synaptics-alps.dat
+
+unset SYNAPTICS_DIAGONAL
+unset DPI
 
 $libinput_tool --mode=accel --filter=linear --speed=0.0 > libinput-mouse.dat
 $libinput_tool --mode=accel --filter=touchpad --speed=0.0 > libinput-touchpad.dat
