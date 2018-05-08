@@ -1,5 +1,6 @@
 #!/usr/bin/gnuplot
-# Print a comparison of the profiles with the basic defaults
+
+set title 'Effect of the maximum accel factor setting'
 
 threshold=4
 accel='0 2 4 6 8'

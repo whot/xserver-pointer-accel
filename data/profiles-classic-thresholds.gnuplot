@@ -1,5 +1,6 @@
 #!/usr/bin/gnuplot
-# Print a comparison of the profiles with the basic defaults
+
+set title 'Effect of the threshold setting'
 
 thresholds='0 0.5 2 4 6 8'
 accel=2

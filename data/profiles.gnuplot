@@ -1,6 +1,8 @@
 #!/usr/bin/gnuplot
 # Print a comparison of the profiles with the basic defaults
 
+set title 'Comparison of the different profiles'
+
 threshold=4
 accel=2
 

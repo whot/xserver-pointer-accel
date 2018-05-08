@@ -1,6 +1,8 @@
 #!/usr/bin/gnuplot
 # Print a comparison of the profiles with the basic defaults
 
+set title "Comparison of the simple profile and libinput's profile"
+
 threshold=4
 accel=2
 

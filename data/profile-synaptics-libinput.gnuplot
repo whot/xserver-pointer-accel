@@ -1,5 +1,7 @@
 #!/usr/bin/gnuplot
 
+set title "Comparison of synaptics' profile and libinput's profile"
+
 mins=0.2
 maxs=0.7
 acc=0.04

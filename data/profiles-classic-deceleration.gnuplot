@@ -1,5 +1,7 @@
 #!/usr/bin/gnuplot
 
+set title 'Effect of the constant deceleration setting'
+
 threshold=4
 accel=2
 profile='classic'

@@ -1,5 +1,7 @@
 #!/usr/bin/gnuplot
 
+set title 'The simple profile'
+
 threshold=4
 accel=2
 profiles='simple'

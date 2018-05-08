@@ -1,5 +1,7 @@
 #!/usr/bin/gnuplot
 
+set title 'Effect of the MinSpeed setting'
+
 mins=0.2
 maxs=0.7
 acc=0.04
