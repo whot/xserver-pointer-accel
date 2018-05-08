@@ -1,4 +1,8 @@
 #!/bin/sh
+#
+# Generates all dat files required. To convert everything to pngs later, run
+# this command after running this script:
+# export GNUTERM="png"; for g in *.gnuplot; do gnuplot -p $g > $g.png; done
 
 tool=$HOME/code/xserver-pointer-accel/build/ptrveloc
 libinput_tool=$HOME/code/libinput/build/ptraccel-debug
