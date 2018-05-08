@@ -108,7 +108,12 @@ SynapticsInit(DeviceIntPtr dev, double min_speed, double max_speed)
     priv.synpara.press_motion_max_factor = 1.0;
 
     /* see set_default_parameters() */
-    double diag = hypot(5112 - 1024, 4832 - 2024); /* T440s over PS/2 */
+    double diag;
+    const char *env;
+    if ((env = getenv("SYNAPTICS_DIAGONAL")) == NULL)
+        hypot(5112 - 1024, 4832 - 2024); /* T440s over PS/2 */
+    else
+        diag = atoi(env);
     double accelFactor = 200.0 / diag;
     priv.synpara.accl = accelFactor;
 
