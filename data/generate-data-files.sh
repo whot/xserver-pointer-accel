@@ -18,9 +18,12 @@ done
 
 p=synaptics
 range="0.2 0.3 0.4 0.5 0.6 0.7 0.8"
-for min in $range; do
-    for max in $range; do
-        $tool $p $min $max > synaptics-min$min-max$max.dat
+accrange="0.02 0.03 0.04 0.05 0.06 0.07 0.08"
+for acc in $accrange; do
+    for min in $range; do
+        for max in $range; do
+            $tool $p $min $max $acc > synaptics-min$min-max$max-acc$acc.dat
+        done
     done
 done
 

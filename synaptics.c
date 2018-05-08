@@ -81,7 +81,7 @@ SynapticsAccelerationProfile(DeviceIntPtr dev,
 }
 
 void
-SynapticsInit(DeviceIntPtr dev, double min_speed, double max_speed)
+SynapticsInit(DeviceIntPtr dev, double min_speed, double max_speed, double accelfct)
 {
     float tmpf;
 
@@ -108,13 +108,14 @@ SynapticsInit(DeviceIntPtr dev, double min_speed, double max_speed)
     priv.synpara.press_motion_max_factor = 1.0;
 
     /* see set_default_parameters() */
-    double diag;
+    double accelFactor;
     const char *env;
-    if ((env = getenv("SYNAPTICS_DIAGONAL")) == NULL)
-        hypot(5112 - 1024, 4832 - 2024); /* T440s over PS/2 */
-    else
-        diag = atoi(env);
-    double accelFactor = 200.0 / diag;
+    if ((env = getenv("SYNAPTICS_DIAGONAL")) != NULL) {
+        double diag = atoi(env);
+        accelFactor = 200/diag;
+    } else {
+        accelFactor = accelfct;
+    }
     priv.synpara.accl = accelFactor;
 
     priv.moving_state = MS_TOUCHPAD_RELATIVE;

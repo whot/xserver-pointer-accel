@@ -187,14 +187,14 @@ int main(int argc, char **argv)
     int profile;
     const char *p = argv[1];
 
-    if (argc != 4) {
+    if (argc != 4 && argc != 5) {
         printf("Usage: %s <profile-name> <threshold> <accel>\n", argv[0]);
         printf("Defaults: classic 4 2\n");
-        printf("If the profile is 'synaptics', the threshold is min-speed (deflt 0.2), "
-               "the accel is max-speed (deflt 0.4)\n");
+        printf("If the profile is 'synaptics', the arguments are "
+               "%s 'synaptics' min-speed max-speed accelfct\n", argv[0]);
+        printf("Defaults: 0.2 0.4 <device-dependent>\n");
         return 1;
     }
-    assert(argc == 4);
 
     if (streq(p, "simple"))
         profile = AccelProfileSimple;
@@ -226,7 +226,8 @@ int main(int argc, char **argv)
     if (profile == AccelProfileDeviceSpecific) {
         double min_speed = threshold,
                max_speed = accel;
-        SynapticsInit(dev, min_speed, max_speed);
+        double accelfct = strtod(argv[4], NULL);
+        SynapticsInit(dev, min_speed, max_speed, accelfct);
     }
 
     apply_acceleration_settings(dev);

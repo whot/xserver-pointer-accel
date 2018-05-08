@@ -240,4 +240,4 @@ void
 SetConstantDeceleration(double v);
 
 void
-SynapticsInit(DeviceIntPtr dev, double min_speed, double max_speed);
+SynapticsInit(DeviceIntPtr dev, double min_speed, double max_speed, double accelfct);
