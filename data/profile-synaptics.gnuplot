@@ -2,7 +2,7 @@
 
 set title "Comparison of the simple profile and synaptics' profile"
 
-mins=0.2
+mins=0.4
 maxs=0.7
 acc=0.04
 threshold=4

@@ -36,13 +36,13 @@ done
 # >>> dpi = 42 * 25.4
 export SYNAPTICS_DIAGONAL="4959"
 export DPI="1067"
-$tool synaptics 0.2 0.7 0.04 > synaptics-ps2.dat
+$tool synaptics 0.4 0.7 0.04 > synaptics-ps2.dat
 
 # >>> diag = math.hypot(1940 , 1063)
 # >>> dpi = 20 * 25.4
 export SYNAPTICS_DIAGONAL="2212"
 export DPI="508"
-$tool synaptics 0.2 0.7 0.09 > synaptics-rmi4.dat
+$tool synaptics 0.4 0.7 0.09 > synaptics-rmi4.dat
 
 # >>> diag = math.hypot(2000, 1400)
 # >>> dpi = 25 * 25.4
@@ -50,7 +50,7 @@ $tool synaptics 0.2 0.7 0.09 > synaptics-rmi4.dat
 # here
 export SYNAPTICS_DIAGONAL="2441"
 export DPI="635"
-$tool synaptics 0.2 0.7 0.12 > synaptics-alps.dat
+$tool synaptics 0.4 0.7 0.12 > synaptics-alps.dat
 
 unset SYNAPTICS_DIAGONAL
 unset DPI

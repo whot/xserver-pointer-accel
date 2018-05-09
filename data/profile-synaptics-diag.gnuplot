@@ -2,7 +2,7 @@
 
 set title 'Effect of different min/max ranges'
 
-mins=0.2
+mins=0.4
 maxs=0.7
 acc=0.04
 
