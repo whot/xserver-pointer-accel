@@ -55,5 +55,8 @@ $tool synaptics 0.2 0.7 0.12 > synaptics-alps.dat
 unset SYNAPTICS_DIAGONAL
 unset DPI
 
-$libinput_tool --mode=accel --filter=linear --speed=0.0 > libinput-mouse.dat
-$libinput_tool --mode=accel --filter=touchpad --speed=0.0 > libinput-touchpad.dat
+speeds="-1.0 -0.5 0.0 0.5 1.0"
+for s in $speeds; do
+    $libinput_tool --mode=accel --filter=linear --speed=$s > libinput-mouse.speed$s.dat
+    $libinput_tool --mode=accel --filter=touchpad --speed=$s > libinput-touchpad.speed$s.dat
+done

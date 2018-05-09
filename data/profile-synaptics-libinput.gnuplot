@@ -14,6 +14,6 @@ set style data lines
 set xrange [0:100]
 set yrange [0:5]
 plot \
-  'libinput-touchpad.dat' using 1:2 title 'libinput touchpad', \
+  'libinput-touchpad.speed0.0.dat' using 1:2 title 'libinput touchpad', \
    filename_syn(mins, maxs, acc) using 1:7 title 'synaptics', \
 

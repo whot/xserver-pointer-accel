@@ -16,6 +16,6 @@ set style data lines
 set xrange [0:100]
 set yrange [0:5]
 plot \
-  'libinput-mouse.dat' using 1:2 title 'libinput mouse', \
+  'libinput-mouse.speed0.0.dat' using 1:2 title 'libinput mouse', \
   for [p in profiles] filename(p, threshold, accel) using 1:5 title p \
 
