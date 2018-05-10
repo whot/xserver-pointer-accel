@@ -21,8 +21,8 @@ done
 
 
 p=synaptics
-range="0.2 0.3 0.4 0.5 0.6 0.7 0.8"
-accrange="0.02 0.03 0.04 0.05 0.06 0.07 0.08"
+range="0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 1.1 1.2 1.3 1.5 2.5"
+accrange="0.02 0.03 0.04 0.05 0.06 0.07 0.08 0.10 0.12 0.16"
 for acc in $accrange; do
     for min in $range; do
         for max in $range; do
